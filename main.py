@@ -37,19 +37,3 @@ die_standard = Die({2+bond: 1, 1: 1, 0: 4})
 die_skilled = Die({2+bond: 1, 1: 2, 0: 3})
 
 die_standard.roll(3).display()
-    
-'''
-def roll_dice(die, n):
-    result = {0:1}
-    for i in range(n):
-        result = add_dice(result, die)
-    return result
-
-
-
-def rolldamage_fighter(melee_dice, n):
-    return roll_dice(die_skilled, (melee_dice+2)*n)
-
-def rolldamage_thief(melee_dice, n):
-    return roll_dice(die_standard, (melee_dice))
-'''
