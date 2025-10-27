@@ -1,10 +1,3 @@
-
-# Online Python - IDE, Editor, Compiler, Interpreter
-
-# bond represents the number of best friends or partners of the character
-# that are in the party.
-bond = 0
-
 # dice are represented with a dictionary where the keys are the value of the face
 # and the values are the number of faces with that value
 
@@ -31,9 +24,3 @@ class Die:
         for i in range(n):
             result = result.add_to(self)
         return result
-
-die_reduced = Die({1: 1, 0:5})
-die_standard = Die({2+bond: 1, 1: 1, 0: 4})
-die_skilled = Die({2+bond: 1, 1: 2, 0: 3})
-
-die_standard.roll(3).display()
