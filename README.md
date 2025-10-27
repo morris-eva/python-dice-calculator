@@ -2,4 +2,4 @@
 
 Code for calculating probabilities with arbitrary dice, inspired by AnyDice.com
 
-Toy project for learning git and OOP
+Toy project for learning git, OOP, and unit testing
