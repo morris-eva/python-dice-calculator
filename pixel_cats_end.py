@@ -10,26 +10,34 @@ class NotCat:
     def set_name(self, name_string):
         self.name = name_string
 
-    def set_personality(self, personality_dict):
-        # the personality of a cat is 5 values representing bravery, benevolence, energy, extroversion, and dedication.
-        # they should be in the range 0-10 inclusive.
-        self.personality = personality_dict
+    def set_personality(self, personality_tuple):
+        # Using a tuple makes it easier to copy in stats from a spreadsheet
+        personality_names = ("Bravery", "Benevolence", "Energy", "Extroversion", "Dedication")
+        self.personality = {personality_names[x]: personality_tuple[x] for x in range(5)}
 
-    def set_stats(self, stats_dict):
-        # the stats of a cat are 7 values representing strength, agility, health, finesse, cleverness, perception, and luck.
-        # they should be in the range 0-40 inclusive (though currently base stats cannot go above 24)
-        self.stats = stats_dict
-        self.stat_total = sum(x for x in self.stats.values())
+    def set_basestats(self, basestats_tuple):
+        # Using a tuple makes it easier to copy in stats from a spreadsheet
+        self.basestat_total = sum(basestats_tuple)
+        stats_names = ("Strength", "Agility", "Health", "Finesse", "Cleverness", "Perception", "Luck")
+        self.basestats = {stats_names[x]: basestats_tuple[x] for x in range(7)}
         
-    def set_levels(self, levels_dict):
-        # for a given cat, each role can be levelled from the starting level of 1 up to 4.
-        # role levels determine available moves.
-        self.levels = levels_dict
+    def set_level(self, levels_dict):
+        # Levels will need to be updated. This method should only update specified roles.
+        # It should also alert in case of mispelling.
+        # The default value is 1. Use the .get() method
+        allowed_roles = ("Fighter", "Thief", "Guardian", "Ranger", "Medic", "Scout", "Bard")
+        self.levels = {}
+        for role, level in levels_dict.items():
+            if role in allowed_roles:
+                self.levels[role] = level
+            else:
+                raise NameError("Did not understand " + str(role) + ". Roles are Fighter, Thief, Guardian, Ranger, Medic, Scout, Bard")
+
 
     def set_active_role(self, role_string):
-        # currently implemented adventuring classes are: fighter, thief, guardian, ranger, medic, scout, bard
-        # due to potential confusion with python classes, adventuring classes will be referred to as roles
-        # the active role gains exp and gives a buff to certain actions.
+        # PCE's adventuring classes are: fighter, thief, guardian, ranger, medic, scout, bard
+        # Due to potential confusion with python classes, adventuring classes will be referred to as
+        # roles. The active role gains exp and gives a buff to certain actions.
         self.active_role = role_string
 
     def set_trinket(self, trinket_tuple_string_integer):
@@ -37,6 +45,8 @@ class NotCat:
         self.trinket = trinket_tuple_string_integer
 
     def create_adventure_dice(self):
-        statstodice = { 0: 1,  1: 1,  2: 1,  3: 1,  4: 1,  5: 1,  6: 1,  7: 2,  8: 2,  9: 2, 10: 2, 11: 2, 12: 2, 13: 3,
-                       14: 3, 15: 3, 16: 3, 17: 4, 18: 4, 19: 4, 20: 4, 21: 5, 22: 5, 23: 5, 24: 5, 25: 6, 26: 6, 27: 6,
-                       28: 6, 29: 7, 30: 7, 31: 7, 32: 7, 33: 8, 34: 8, 35: 8, 36: 8, 37: 9, 38: 9, 39: 9, 40: 9}
+        statstodice = { 0: 1,  1: 1,  2: 1,  3: 1,  4: 1,  5: 1,  6: 1,  7: 2,  8: 2,  9: 2, 10: 2,
+                        11: 2, 12: 2, 13: 3, 14: 3, 15: 3, 16: 3, 17: 4, 18: 4, 19: 4, 20: 4, 21: 5,
+                        22: 5, 23: 5, 24: 5, 25: 6, 26: 6, 27: 6, 28: 6, 29: 7, 30: 7, 31: 7, 32: 7,
+                        33: 8, 34: 8, 35: 8, 36: 8, 37: 9, 38: 9, 39: 9, 40: 9}
+        
