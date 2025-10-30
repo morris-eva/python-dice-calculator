@@ -35,9 +35,6 @@ class NotCat:
 
 
     def set_active_role(self, role_string):
-        # PCE's adventuring classes are: fighter, thief, guardian, ranger, medic, scout, bard
-        # Due to potential confusion with python classes, adventuring classes will be referred to as
-        # roles. The active role gains exp and gives a buff to certain actions.
         self.active_role = role_string
 
     def set_trinket(self, trinket_tuple_string_integer):
